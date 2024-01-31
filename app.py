@@ -3,6 +3,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 import os
+import random
 
 app = Flask(__name__)
 
@@ -24,8 +25,12 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = text = event.message.text
-    if message.find('luck')==0:
-        line_bot_api.reply_message(event.reply_token,[TextSendMessage(message[4:])])
+    command_list="command: Command list for 蟾蜍狗Toadog\nluck (anyword): Roll a Icosahedron (20 sided dice) to test your luck!\n"
+    if message.find('luck ')==0:
+        luckynumber = random.randint(0,20)
+        line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
+    else if message.find('command')==0:
+        line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
     line_bot_api.reply_message(event.reply_token,[TextSendMessage(message)])
 import os
 if __name__ == "__main__":
