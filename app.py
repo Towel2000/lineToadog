@@ -26,7 +26,7 @@ def handle_message(event):
     message = text = event.message.text
     if message.find('luck')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(message[4:])])
-
+    line_bot_api.reply_message(event.reply_token,[TextSendMessage(message)])
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
