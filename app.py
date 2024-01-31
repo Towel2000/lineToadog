@@ -24,13 +24,56 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    intro_emoji = [
+    {
+        "index": 15,
+        "productId": "5ac21a8c040ab15980c9b43f",
+        "emojiId": "020"
+    },
+    {
+        "index": 16,
+        "productId": "5ac21a8c040ab15980c9b43f",
+        "emojiId": "041"
+    }
+    ,
+    {
+        "index": 17,
+        "productId": "5ac21a8c040ab15980c9b43f",
+        "emojiId": "027"
+    }
+    ,
+    {
+        "index": 18,
+        "productId": "5ac21a8c040ab15980c9b43f",
+        "emojiId": "030"
+    }
+    ,
+    {
+        "index": 19,
+        "productId": "5ac21a8c040ab15980c9b43f",
+        "emojiId": "041"
+    },
+    {
+        "index": 20,
+        "productId": "5ac21a8c040ab15980c9b43f",
+        "emojiId": "033"
+    },
+    {
+        "index": 74,
+        "productId": "5ac21e6c040ab15980c9b444",
+        "emojiId": "088"
+    }
+]
+    intro_text='Hi, my name is $$$$$$.\nI\'m a line-bot made for performing simple tricks.$\nToadog is still very new, update will be performed in the near future.'
     message = text = event.message.text
-    command_list="command: Command list for 蟾蜍狗Toadog\nluck (anyword): Roll a Icosahedron (20 sided dice) to test your luck!\n"
+    command_list="command: Command list for 蟾蜍狗Toadog\n\nluck (anyword): Roll a Icosahedron (20 sided dice) to test your luck!\n"
     if message.find('luck ')==0:
         luckynumber = random.randint(0,20)
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     elif message.find('command')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
+    elif message.find('intro')==0:
+        line_bot_api.reply_message(event.reply_token,[TextSendMessage(text=intro_text, emojis=intro_emoji)])
     line_bot_api.reply_message(event.reply_token,[TextSendMessage(message)])
 import os
 if __name__ == "__main__":
