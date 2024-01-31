@@ -24,10 +24,9 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
-    reply="ass"
-    #if message.index('luck',0,3):
-    #    reply=message.strip('luck')
-    line_bot_api.reply_message(event.reply_token, reply)
+    if event.message.text.index('luck',0,3):
+       reply=message.strip('luck')
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=reply))
 
 import os
 if __name__ == "__main__":
