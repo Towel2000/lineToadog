@@ -29,7 +29,7 @@ def handle_message(event):
     if message.find('luck ')==0:
         luckynumber = random.randint(0,20)
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
-    else if message.find('command')==0:
+    elif message.find('command')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
     line_bot_api.reply_message(event.reply_token,[TextSendMessage(message)])
 import os
