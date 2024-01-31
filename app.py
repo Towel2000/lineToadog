@@ -61,7 +61,7 @@ def handle_message(event):
 ]
     intro_text='Hi, my name is $$$$$$.\nI\'m a line-bot made for performing simple tricks.\nType in \'command\'to show how to use Toadog :)\nToadog is still very new, update will be performed in the near future.'
     message = text = event.message.text
-    command_list="command: Command list for 蟾蜍狗Toadog\n\nintro: Introduction for Toadog\n\nd: Roll a Icosahedron (20 sided dice) to test your luck!\n\n"
+    command_list="command: Command list for 蟾蜍狗Toadog\n\nintro: Introduction for Toadog\n\nd: Roll an Icosahedron (20 sided dice) to test your luck!\n\n"
     if message.find('d ')==0:
         luckynumber = random.randint(0,20)
         if message.len()>2:
