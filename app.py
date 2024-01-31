@@ -64,7 +64,7 @@ def handle_message(event):
     command_list="command: Command list for 蟾蜍狗Toadog\n\nintro: Introduction for Toadog\n\nd: Roll an Icosahedron (20 sided dice) to test your luck!\n\n"
     if message.find('d ')==0:
         luckynumber = str(random.randint(0,20))
-        if message.len()>2:
+        if len(message)>2:
             luckynumber = luckynumber + message[2:]
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     elif message.find('command')==0:
