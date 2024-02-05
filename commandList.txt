@@ -1,1 +1,2 @@
-command:\nCommand list for 蟾蜍狗Toadog\n\nintro:\nIntroduction for Toadog\n\nd (anything):\nRoll an Icosahedron (20 sided dice) to test your luck!\n\n
+command:
+Command list for 蟾蜍狗Toadog\n\nintro:\nIntroduction for Toadog\n\nd (anything):\nRoll an Icosahedron (20 sided dice) to test your luck!\n\n
