@@ -72,7 +72,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
     elif message.find('intro')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(text=intro_text, emojis=intro_emoji)])
-    elif 
+
     #auto reply #line_bot_api.reply_message(event.reply_token,[TextSendMessage(message)])
 import os
 if __name__ == "__main__":
