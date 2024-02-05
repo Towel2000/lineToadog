@@ -59,7 +59,7 @@ def handle_message(event):
         "emojiId": "033"
     }
 ]
-    f = open('words.txt', 'r')
+    f = open('commandList.txt', 'r')
     command_list = f.read()
     intro_text='Hi, my name is $$$$$$.\nI\'m a line-bot made for performing simple tricks.\nType in \'command\'to show how to use Toadog :)\nToadog is still very new, update will be performed in the near future.'
     message = text = event.message.text
