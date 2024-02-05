@@ -59,9 +59,10 @@ def handle_message(event):
         "emojiId": "033"
     }
 ]
+    f = open('words.txt', 'r')
+    command_list = f.read()
     intro_text='Hi, my name is $$$$$$.\nI\'m a line-bot made for performing simple tricks.\nType in \'command\'to show how to use Toadog :)\nToadog is still very new, update will be performed in the near future.'
     message = text = event.message.text
-    command_list="command: Command list for 蟾蜍狗Toadog\n\nintro: Introduction for Toadog\n\nd (anything): Roll an Icosahedron (20 sided dice) to test your luck!\n\n"
     if message.find('d')==0:
         luckynumber = str(random.randint(0,20))
         if len(message)>2:
@@ -72,6 +73,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
     elif message.find('intro')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(text=intro_text, emojis=intro_emoji)])
+    f.close()
 
     #auto reply #line_bot_api.reply_message(event.reply_token,[TextSendMessage(message)])
 import os
