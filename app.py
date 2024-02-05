@@ -2,6 +2,7 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
+import re # for searching number in string
 import os
 import random
 
@@ -59,21 +60,32 @@ def handle_message(event):
         "emojiId": "033"
     }
 ]
-    f = open('commandList.txt', 'r')
-    command_list = f.read()
+    commandd = open('commandList.txt', 'r')
+    command_list = commandd.read()
     intro_text='Hi, my name is $$$$$$.\nI\'m a line-bot made for performing simple tricks.\nType in \'command\'to show how to use Toadog :)\nToadog is still very new, update will be performed in the near future.'
     message = text = event.message.text
-    if message.find('d')==0:
-        luckynumber = str(random.randint(0,20))
-        if len(message)>2:
-            luckynumber = luckynumber + " " + message[1:]
-            luckynumber = luckynumber.strip()
-        line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
-    elif message.find('command')==0:
+
+    if message[0].isnumeric():
+        i = 0
+        for x in message:
+            if x.isnumeric() == False:
+                if x !='d':
+                    break
+                else:
+                    if i>2:
+                        line_bot_api.reply_message(event.reply_token,[TextSendMessage('Sorry, we can\'t roll more than 99 dices at a time ><')])
+                    else:
+                        for _ in i:
+                            luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
+                        luckynumber = luckynumber + message[i+1:].strip()
+                        line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
+            else:
+                i+=1
+    if message.find('command')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
     elif message.find('intro')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(text=intro_text, emojis=intro_emoji)])
-    f.close()
+    commandd.close()
 
     #auto reply #line_bot_api.reply_message(event.reply_token,[TextSendMessage(message)])
 import os

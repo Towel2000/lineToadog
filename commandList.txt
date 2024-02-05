@@ -4,7 +4,7 @@ Command list for 蟾蜍狗Toadog
 intro:
 Introduction for Toadog
 
-d (anything):
-Roll an Icosahedron (20 sided dice) to test your luck!
+(x)d(anything):
+Roll an Icosahedron (20 sided dice) x times to test your luck!
 
 
