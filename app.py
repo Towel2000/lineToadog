@@ -65,7 +65,7 @@ def handle_message(event):
     if message.find('d')==0:
         luckynumber = str(random.randint(0,20))
         if len(message)>2:
-            luckynumber = luckynumber + " " + message[2:]
+            luckynumber = luckynumber + " " + message[1:]
             luckynumber = luckynumber.strip()
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     elif message.find('command')==0:
