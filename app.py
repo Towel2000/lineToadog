@@ -75,9 +75,8 @@ def handle_message(event):
                     if i>2:
                         line_bot_api.reply_message(event.reply_token,[TextSendMessage('Sorry, we can\'t roll more than 99 dices at a time ><')])
                     else:
-                        #line_bot_api.reply_message(event.reply_token,[TextSendMessage('assholoe')])
-                        for _ in i:
-                            luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
+                        for bb in i:
+                            luckynumber = luckynumber + str(random.randint(0,20)) + '\n'   
                         line_bot_api.reply_message(event.reply_token,[TextSendMessage('as')])
                         no_leading_num_message = message[i+1:]
                         luckynumber = luckynumber + no_leading_num_message.strip()#error?w
