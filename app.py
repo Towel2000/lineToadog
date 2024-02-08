@@ -2,7 +2,6 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
-import re # for searching number in string
 import os
 import random
 
@@ -72,16 +71,16 @@ def handle_message(event):
                 if x !='d':
                     break
                 else:
+                    luckynumber = ''
                     if i>2:
                         line_bot_api.reply_message(event.reply_token,[TextSendMessage('Sorry, we can\'t roll more than 99 dices at a time ><')])
                     else:
-                        #for _ in i:
-                        #    luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
-                        luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
+                        for _ in i:
+                            luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
                         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
                         no_leading_num_message = message[i+1:]
                         luckynumber = luckynumber + no_leading_num_message.strip()#error?w
-                        line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
+                        #line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
             else:
                 i+=1
     if message.find('command')==0:
