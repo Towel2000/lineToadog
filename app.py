@@ -72,12 +72,13 @@ def handle_message(event):
                 if x !='d':
                     break
                 else:
-                    if i>2:
+                    if i>3:
                         line_bot_api.reply_message(event.reply_token,[TextSendMessage('Sorry, we can\'t roll more than 99 dices at a time ><')])
                     else:
-                        for _ in i:
-                            luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
-                        luckynumber = luckynumber + message[i+1:].strip()
+                        #for _ in i:
+                        #    luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
+                        luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
+                        luckynumber = luckynumber + message[i+1:].strip()#error?w
                         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
             else:
                 i+=1
