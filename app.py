@@ -78,6 +78,7 @@ def handle_message(event):
                         #for _ in i:
                         #    luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
                         luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
+                        line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
                         no_leading_num_message = message[i+1:]
                         luckynumber = luckynumber + no_leading_num_message.strip()#error?w
                         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
