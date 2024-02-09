@@ -80,10 +80,10 @@ def handle_message(event):
             no_leading_num_message = message[2:]
             luckynumber = luckynumber + '[' + no_leading_num_message.strip() + ']' 
             if fnum>1:
-                luckynumber = luckynumber + '\n' + 'ttl: ' + str(ttl) + '\n' + 'avg: ' + str(ttl/fnum)
+                luckynumber = luckynumber + '\n' + 'Ttl: ' + str(ttl) + '\n' + 'Avg: ' + str(ttl/fnum)
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     #character stat
-    elif message.lower().find('d character '):
+    elif message.lower().find('d character ')==0:
         if len(message)>12:
             savings = message[12:].split()
             if len(savings)!=0:
@@ -96,7 +96,7 @@ def handle_message(event):
                         stat_output = stat_output + y + ': ' + random.randint(1,highrand) + '\n'
                 line_bot_api.reply_message(event.reply_token,[TextSendMessage(stat_output)])
             else:
-                line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
+                line_bot_api.reply_message(event.reply_token,[TextSendMessage("P")])
         else:
             line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
     #dice default
