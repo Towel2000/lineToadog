@@ -63,17 +63,19 @@ def handle_message(event):
     command_list = commandd.read()
     intro_text='Hi, my name is $$$$$$.\nI\'m a line-bot made for performing simple tricks.\nType in \'command\'to show how to use Toadog :)\nToadog is still very new, update will be performed in the near future.'
     message = text = event.message.text
-    luckynumber = ''
+    luckynumber = ""
     if message[0].isnumeric():
         if message[1] =='d':
             ttl=0
-            luckynumber = ''
+            luckynumber = ""
             for g in range(int(message[0])):
-                randnum = random.randint(0,20)
+                randnum = random.randint(1,20)
                 luckynumber = luckynumber + str(randnum) + '\n'
                 ttl = ttl + randnum
             no_leading_num_message = message[2:]
-            luckynumber = luckynumber + no_leading_num_message.strip() + '\n' + 'ttl: ' + ttl + '\n' + 'avg: ' 
+            luckynumber = luckynumber + no_leading_num_message.strip() 
+            if int(message[0])>1:
+                luckynumber = luckynumber + '\n' + 'ttl: ' + str(ttl) + '\n' + 'avg: ' 
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     elif message[0]=='d':
         luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
