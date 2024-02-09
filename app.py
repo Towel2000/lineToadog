@@ -69,8 +69,8 @@ def handle_message(event):
             ttl=0
             luckynumber = ''
             for g in range(int(message[0])):
-                randnum = str(random.randint(0,20))
-                luckynumber = luckynumber + randnum + '\n'
+                randnum = random.randint(0,20)
+                luckynumber = luckynumber + str(randnum) + '\n'
                 ttl = ttl + randnum
             no_leading_num_message = message[2:]
             luckynumber = luckynumber + no_leading_num_message.strip() + '\n' + 'ttl: ' + ttl + '\n' + 'avg: ' 
