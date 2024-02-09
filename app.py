@@ -87,13 +87,12 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     #character stat
     elif message.lower().find('d character ')==0:
-            savings = message[12:].lstrip().rstrip()
+            savings = message[12:]
             if len(savings)>0:
                 savings = savings.split()
                 stat_output = "Name: " + savings[0] +'\n'
                 for y in savings:
-                    if y != savings[0]:
-                        stat_output = stat_output + y + ': ' + random.randint(1,highrand) + '\n'
+                    stat_output = stat_output + y + ': ' + random.randint(1,highrand) + '\n'
                 line_bot_api.reply_message(event.reply_token,[TextSendMessage(stat_output)])
             else:
                 line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
