@@ -96,9 +96,8 @@ def handle_message(event):
                         stat_output = stat_output + y + ': ' + random.randint(1,highrand) + '\n'
                 line_bot_api.reply_message(event.reply_token,[TextSendMessage(stat_output)])
             else:
-                line_bot_api.reply_message(event.reply_token,[TextSendMessage("P")])
-        else:
-            line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
+                line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
+        
     #dice default
     elif message.lower().find('d')==0:
         luckynumber = luckynumber + str(random.randint(0,highrand)) + '\n'
