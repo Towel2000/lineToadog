@@ -66,23 +66,14 @@ def handle_message(event):
 
     if message[0].isnumeric():
         i = 0
-        for x in message:
-            if x.isnumeric() == False:
-                if x !='d':
-                    break
-                else:
-                    luckynumber = ''
-                    if i>2:
-                        line_bot_api.reply_message(event.reply_token,[TextSendMessage('Sorry, we can\'t roll more than 99 dices at a time ><')])
-                    else:
-                        for bb in int(message[:2]):
-                            luckynumber = luckynumber + str(random.randint(0,20)) + '\n'   
-                        line_bot_api.reply_message(event.reply_token,[TextSendMessage('as')])
-                        no_leading_num_message = message[i+1:]
-                        luckynumber = luckynumber + no_leading_num_message.strip()#error?w
-                        line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
-            else:
-                i+=1
+        if message[1] =='d':
+            luckynumber = ''
+            for _ in int(message[0]):
+                luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
+            line_bot_api.reply_message(event.reply_token,[TextSendMessage('as')])
+            no_leading_num_message = message[i+1:]
+            luckynumber = luckynumber + no_leading_num_message.strip()
+            line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     if message.find('command')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
     elif message.find('intro')==0:
