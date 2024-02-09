@@ -63,10 +63,9 @@ def handle_message(event):
     command_list = commandd.read()
     intro_text='Hi, my name is $$$$$$.\nI\'m a line-bot made for performing simple tricks.\nType in \'command\'to show how to use Toadog :)\nToadog is still very new, update will be performed in the near future.'
     message = text = event.message.text
-
+    luckynumber = ''
     if message[0].isnumeric():
         if message[1] =='d':
-            luckynumber = ''
             ttl=0
             for g in range(int(message[0])):
                 randnum = str(random.randint(0,20))
