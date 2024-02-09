@@ -78,7 +78,10 @@ def handle_message(event):
                 luckynumber = luckynumber + str(randnum) + '\n'
                 ttl = ttl + randnum
             no_leading_num_message = message[2:]
-            luckynumber = luckynumber + '[' + no_leading_num_message.strip() + ']' 
+            if no_leading_num_message.rstrip() == '':
+                luckynumber = luckynumber + no_leading_num_message.strip()
+            else:
+                luckynumber = luckynumber + '[' + no_leading_num_message.strip() + ']' 
             if fnum>1:
                 luckynumber = luckynumber + '\n' + 'Ttl: ' + str(ttl) + '\n' + 'Avg: ' + str(ttl/fnum)
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
@@ -100,10 +103,9 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
     #dice default
-    elif message.lower().find('d ')==0:
-        luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
-        no_leading_num_message = message[1:]
-        luckynumber = luckynumber + '[' + no_leading_num_message.strip() + ']'
+    elif message.lower().find('d')==0:
+        luckynumber = luckynumber + str(random.randint(0,highrand)) + '\n'
+        luckynumber = luckynumber + '[' + message[1:].lstrip() + ']'
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     #command list show
     if message.lower().find('command')==0:
