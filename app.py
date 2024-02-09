@@ -67,11 +67,19 @@ def handle_message(event):
     if message[0].isnumeric():
         if message[1] =='d':
             luckynumber = ''
+            ttl=0
             for g in range(int(message[0])):
-                luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
+                randnum = str(random.randint(0,20))
+                luckynumber = luckynumber + randnum + '\n'
+                ttl = ttl + randnum
             no_leading_num_message = message[2:]
-            luckynumber = luckynumber + no_leading_num_message.strip()
+            luckynumber = luckynumber + no_leading_num_message.strip() + '\n' + 'ttl: ' + ttl + '\n' + 'avg: ' 
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
+    if message[0]=='d':
+        luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
+        no_leading_num_message = message[1:]
+        luckynumber = luckynumber + no_leading_num_message.strip()
+        line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     if message.find('command')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
     elif message.find('intro')==0:
