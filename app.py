@@ -92,7 +92,8 @@ def handle_message(event):
                 savings = savings.split()
                 stat_output = "Name: " + savings[0] +'\n'
                 for y in savings:
-                    stat_output = stat_output + y + ': ' + str(random.randint(1,highrand)) + '\n'
+                    if y != savings[0]:
+                        stat_output = stat_output + y + ': ' + str(random.randint(1,highrand)) + '\n'
                 line_bot_api.reply_message(event.reply_token,[TextSendMessage(stat_output)])
             else:
                 line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
