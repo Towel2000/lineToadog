@@ -1,5 +1,5 @@
 import random
 import os
-message = ' a b c c b a a asshoel '
+message = ' a b c d a d   d s '
 message = message.split()
 print(message)
