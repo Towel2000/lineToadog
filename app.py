@@ -75,7 +75,7 @@ def handle_message(event):
             no_leading_num_message = message[2:]
             luckynumber = luckynumber + no_leading_num_message.strip() + '\n' + 'ttl: ' + ttl + '\n' + 'avg: ' 
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
-    if message[0]=='d':
+    elif message[0]=='d':
         luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
         no_leading_num_message = message[1:]
         luckynumber = luckynumber + no_leading_num_message.strip()
