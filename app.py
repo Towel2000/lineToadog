@@ -85,7 +85,7 @@ def handle_message(event):
     #character stat
     elif message.lower().find('d character ')==0:
         if len(message)>12:
-            savings = message[12:].split()
+            savings = message[12:].lsplit().rsplit()
             if len(savings)!=0:
                 savings = savings.split(" ", 1)
                 while savings(len(savings)-1).find(' ')!=-1:
