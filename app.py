@@ -91,6 +91,7 @@ def handle_message(event):
             if len(savings)>0:
                 savings = savings.split()
                 stat_output = "Name: " + savings[0] +'\n'
+                line_bot_api.reply_message(event.reply_token,[TextSendMessage(stat_output)])
                 for y in savings:
                     stat_output = stat_output + y + ': ' + random.randint(1,highrand) + '\n'
                 line_bot_api.reply_message(event.reply_token,[TextSendMessage(stat_output)])
