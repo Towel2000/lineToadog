@@ -65,17 +65,18 @@ def handle_message(event):
     message = text = event.message.text
     luckynumber = ""
     if message[0].isnumeric():
+        fnum = int(message[0])
         if message[1] =='d':
             ttl=0
             luckynumber = ""
-            for g in range(int(message[0])):
+            for g in range(fnum):
                 randnum = random.randint(1,20)
                 luckynumber = luckynumber + str(randnum) + '\n'
                 ttl = ttl + randnum
             no_leading_num_message = message[2:]
             luckynumber = luckynumber + no_leading_num_message.strip() 
-            if int(message[0])>1:
-                luckynumber = luckynumber + '\n' + 'ttl: ' + str(ttl) + '\n' + 'avg: ' 
+            if fnum>1:
+                luckynumber = luckynumber + '\n' + 'ttl: ' + str(ttl) + '\n' + 'avg: ' + str(ttl/fnum)
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     elif message[0]=='d':
         luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
