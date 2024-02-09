@@ -67,6 +67,7 @@ def handle_message(event):
     if message[0].isnumeric():
         if message[1] =='d':
             ttl=0
+            luckynumber = ''
             for g in range(int(message[0])):
                 randnum = str(random.randint(0,20))
                 luckynumber = luckynumber + randnum + '\n'
