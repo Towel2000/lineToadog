@@ -87,11 +87,9 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     #character stat
     elif message.lower().find('d character ')==0:
-            savings = message[12:].lsplit().rsplit()
+            savings = message[12:].lstrip().rstrip()
             if len(savings)>0:
-                savings = savings.split(" ", 1)
-                while savings(len(savings)-1).find(' ')!=-1:
-                    savings = savings + savings(len(savings)-1).split(" ", 1)
+                savings = savings.split()
                 stat_output = "Name: " + savings[0] +'\n'
                 for y in savings:
                     if y != savings[0]:
