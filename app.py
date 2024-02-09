@@ -62,7 +62,11 @@ def handle_message(event):
     commandd = open('commandList.txt', 'r')
     command_list = commandd.read()
     intro_text='Hi, my name is $$$$$$.\nI\'m a line-bot made for performing simple tricks.\nType in \'command\'to show how to use Toadog :)\nToadog is still very new, update will be performed in the near future.'
+    highrand = 20
+
     message = text = event.message.text
+
+    #20 dice show
     luckynumber = ""
     if message[0].isnumeric():
         fnum = int(message[0])
@@ -70,26 +74,50 @@ def handle_message(event):
             ttl=0
             luckynumber = ""
             for g in range(fnum):
-                randnum = random.randint(1,20)
+                randnum = random.randint(1,highrand)
                 luckynumber = luckynumber + str(randnum) + '\n'
                 ttl = ttl + randnum
             no_leading_num_message = message[2:]
-            luckynumber = luckynumber + no_leading_num_message.strip() 
+            luckynumber = luckynumber + '[' + no_leading_num_message.strip() + ']' 
             if fnum>1:
                 luckynumber = luckynumber + '\n' + 'ttl: ' + str(ttl) + '\n' + 'avg: ' + str(ttl/fnum)
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
-    elif message[0]=='d':
+    #character stat
+    elif message.lower().find('d character '):
+        if len(message)>12:
+            savings = message[12:].split()
+            if len(savings)!=0:
+                savings = savings.split(" ", 1)
+                while savings(len(savings)-1).find(' ')!=-1:
+                    savings = savings + savings(len(savings)-1).split(" ", 1)
+                stat_output = "Name: " + savings[0] +'\n'
+                for y in savings:
+                    if y != savings[0]:
+                        stat_output = stat_output + y + ': ' + random.randint(1,highrand) + '\n'
+                line_bot_api.reply_message(event.reply_token,[TextSendMessage(stat_output)])
+            else:
+                line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
+        else:
+            line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
+    #dice default
+    elif message.lower().find('d ')==0:
         luckynumber = luckynumber + str(random.randint(0,20)) + '\n'
         no_leading_num_message = message[1:]
-        luckynumber = luckynumber + no_leading_num_message.strip()
+        luckynumber = luckynumber + '[' + no_leading_num_message.strip() + ']'
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
-    if message.find('command')==0:
+    #command list show
+    if message.lower().find('command')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
+
+    #introduction show
     elif message.find('intro')==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(text=intro_text, emojis=intro_emoji)])
     commandd.close()
 
-    #auto reply #line_bot_api.reply_message(event.reply_token,[TextSendMessage(message)])
+
+
+    #auto reply 
+    #line_bot_api.reply_message(event.reply_token,[TextSendMessage(message)])
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
