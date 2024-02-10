@@ -104,13 +104,13 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
         
     #dice default
-    elif message.lower().find(cmdDice)==0:
+    elif message.lower().find(cmdDice)==0 and len(message) == len(cmdDice):
         luckynumber = luckynumber + str(random.randint(0,highrand)) + '\n'
         luckynumber = luckynumber + '[' + message[1:].lstrip() + ']'
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     
     #command list show
-    if message.lower().find(cmdCmd)==0:
+    if message.lower().find(cmdCmd)==0 and len(message) == len(cmdCmd):
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
 
     #introduction show
