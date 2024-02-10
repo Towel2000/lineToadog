@@ -1,15 +1,15 @@
 command:
-Command list for 蟾蜍狗Toadog
+        Command list for 蟾蜍狗Toadog
 
 intro:
 Introduction for 蟾蜍狗Toadog
 
 (x)d (anything):
-Roll an Icosahedron (20 sided dice) x times to test your luck!
-*x must be less than 10 ><
-*d(anything) rolls a dice as default!
+    Roll an Icosahedron (20 sided dice) x times to test your luck!
+    *x must be less than 10 ><
+    *d(anything) rolls a dice as default!
 
 d character (name) (anything)*N:
-Command for creating a board game character's stat.
-After insertion for the character's name, leave space between every element.
-Each element would be rolled by a 20 sided dice by default.
+    Command for creating a board game character's stat.
+    After insertion for the character's name, leave space between every element.
+    Each element would be rolled by a 20 sided dice by default.
