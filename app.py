@@ -63,6 +63,11 @@ def handle_message(event):
     command_list = commandd.read()
     intro_text='Hi, my name is $$$$$$.\nI\'m a line-bot made for performing simple tricks.\nType in \'command\'to show how to use Toadog :)\nToadog is still very new, update will be performed in the near future.'
     highrand = 20
+    #commands string
+    cmdDice = 'd'
+    cmdStat = 'd char '
+    cmdIntro = 'intro'
+    cmdCmd = 'command'
 
     message = text = event.message.text
 
@@ -70,7 +75,7 @@ def handle_message(event):
     luckynumber = ""
     if message[0].isnumeric():
         fnum = int(message[0])
-        if message[1] =='d':
+        if message[1] ==cmdDice:
             ttl=0
             luckynumber = ""
             for g in range(fnum):
@@ -86,8 +91,8 @@ def handle_message(event):
                 luckynumber = luckynumber + '\n' + 'Ttl: ' + str(ttl) + '\n' + 'Avg: ' + str(ttl/fnum)
             line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
     #character stat
-    elif message.lower().find('d character ')==0:
-            savings = message[12:].rstrip()
+    elif message.lower().find(cmdStat)==0:
+            savings = message[len(cmdStat):].rstrip()
             if len(savings)>0:
                 savings = savings.split()
                 stat_output = "Name: " + savings[0] +'\n'
@@ -99,16 +104,17 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token,[TextSendMessage("Please insert a name for your character ><")])
         
     #dice default
-    elif message.lower().find('d')==0:
+    elif message.lower().find(cmdDice)==0:
         luckynumber = luckynumber + str(random.randint(0,highrand)) + '\n'
         luckynumber = luckynumber + '[' + message[1:].lstrip() + ']'
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(luckynumber)])
+    
     #command list show
-    if message.lower().find('command')==0:
+    if message.lower().find(cmdCmd)==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(command_list)])
 
     #introduction show
-    elif message.find('intro')==0:
+    elif message.find(cmdIntro)==0:
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(text=intro_text, emojis=intro_emoji)])
     commandd.close()
 
